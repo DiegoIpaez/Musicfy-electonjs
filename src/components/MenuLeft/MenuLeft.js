@@ -17,13 +17,12 @@ export default function MenuLeft({ user }) {
     content: "",
   };
 
-  const [activeMenu, setAtiveMenu] = useState(location?.pathname);
+  const [activeMenu, setActiveMenu] = useState('');
   const [admin, setAdmin] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState(initialModalContent);
 
-  const handleMenu = (_, menu) => setAtiveMenu(menu.to);
-
+  useEffect(() => setActiveMenu(location?.pathname), [location])
   useEffect(() => {
     const fetchingAdminUserData = async () => {
       try {
@@ -67,7 +66,7 @@ export default function MenuLeft({ user }) {
         to={item?.pathname ?? '/'}
         name={item.name}
         active={activeMenu === item.pathname}
-        onClick={item?.modalKey ? () => handlerModal(item?.modalKey) : handleMenu}
+        onClick={item?.modalKey ? () => handlerModal(item?.modalKey) : ()=>{}}
       >
         <Icon name={item.iconName} /> {item.label}
       </Item>
