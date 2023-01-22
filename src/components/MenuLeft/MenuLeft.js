@@ -5,13 +5,22 @@ import { Menu, Icon } from "semantic-ui-react";
 import { toast } from "react-toastify";
 import { isAdminUser } from "../../service/user";
 import { adminMenuItems, userMenuItems } from "./menuItems";
+import BasicModal from "../Modal/BasicModal";
 
 const { Item } = Menu;
 
 export default function MenuLeft({ user }) {
   const location = useLocation();
+
+  const initialModalContent = {
+    title: "",
+    content: "",
+  };
+
   const [activeMenu, setAtiveMenu] = useState(location?.pathname);
   const [admin, setAdmin] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [modalContent, setModalContent] = useState(initialModalContent);
 
   const handleMenu = (_, menu) => setAtiveMenu(menu.to);
 
@@ -27,24 +36,56 @@ export default function MenuLeft({ user }) {
     fetchingAdminUserData();
   }, [user]);
 
+  const handlerModal = (type) => {
+    switch (type) {
+      case "artist":
+        setModalContent({
+          title: "Nuevo artista",
+          content: <h2>Formulario para nuevo artista</h2>,
+        });
+        setShowModal(true);
+        break;
+      case "song":
+        setModalContent({
+          title: "Nueva cancion",
+          content: <h2>Formulario para nueva cancion</h2>,
+        });
+        setShowModal(true);
+        break;
+      default:
+        setModalContent(initialModalContent);
+        setShowModal(false);
+        break;
+    }
+  };
+
   const getMenuItems = (menuItems) =>
     menuItems.map((item, i) => (
       <Item
         key={`${item.name}${i}`}
-        as={Link}
-        to={item.pathname}
+        as={item?.pathname && Link}
+        to={item?.pathname ?? '/'}
         name={item.name}
         active={activeMenu === item.pathname}
-        onClick={handleMenu}
+        onClick={item?.modalKey ? () => handlerModal(item?.modalKey) : handleMenu}
       >
         <Icon name={item.iconName} /> {item.label}
       </Item>
     ));
 
   return (
-    <Menu className="menu-left" vertical>
-      <div className="top">{getMenuItems(userMenuItems)}</div>
-      <div className="footer">{admin && getMenuItems(adminMenuItems)}</div>
-    </Menu>
+    <>
+      <Menu className="menu-left" vertical>
+        <div className="top">{getMenuItems(userMenuItems)}</div>
+        <div className="footer">{admin && getMenuItems(adminMenuItems)}</div>
+      </Menu>
+      <BasicModal
+        show={showModal}
+        setShow={setShowModal}
+        title={modalContent.title}
+      >
+        {modalContent.content}
+      </BasicModal>
+    </>
   );
 }

@@ -1,15 +1,15 @@
 export const newArtistItem = {
   name: "newArtist",
-  pathname: "/settings",
   iconName: "plus square outline",
   label: "Nuevo Artista",
+  modalKey: 'artist' 
 };
 
 export const newSongItem = {
   name: "newSong",
-  pathname: "/newSong",
   iconName: "plus square outline",
   label: "Nueva Cancion",
+  modalKey: 'song' 
 };
 
 const adminMenuItems = [newArtistItem, newSongItem];
