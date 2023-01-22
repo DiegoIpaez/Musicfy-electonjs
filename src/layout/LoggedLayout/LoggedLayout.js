@@ -17,7 +17,7 @@ export default function LoggedLayout({ user }) {
           </Column>
           <Column width={13} className="content">
             <TopBar user={user} />
-            <Routes />
+            <Routes user={user} />
           </Column>
         </Row>
         <Row>
