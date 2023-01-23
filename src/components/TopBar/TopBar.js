@@ -7,6 +7,7 @@ import userImage from "../../assets/png/user.png";
 
 const TopBar = ({ user }) => {
   const navigate = useNavigate();
+  const getAvatar = () => !user?.photoURL ? userImage : user?.photoURL;
   const logout = async () => {
     try {
       await auth.signOut();
@@ -22,7 +23,7 @@ const TopBar = ({ user }) => {
       </div>
       <div className="top-bar__right">
         <Link to="/settings">
-          <Image src={userImage} />
+          <Image src={getAvatar()} />
           {user.displayName}
         </Link>
         <Icon name="power off" onClick={() => logout()} />
