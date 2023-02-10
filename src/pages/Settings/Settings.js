@@ -4,6 +4,7 @@ import UserName from "../../components/Settings/UserName";
 import UserEmail from "../../components/Settings/UserEmail";
 import BasicModal from "../../components/Modal/BasicModal";
 import { useState } from "react";
+import UserPassword from "../../components/Settings/UserPassword";
 
 const Settings = ({ user }) => {
   const [showModal, setShowModal] = useState(false);
@@ -24,6 +25,11 @@ const Settings = ({ user }) => {
         />
       </div>
       <UserEmail
+        user={user}
+        setShowModal={setShowModal}
+        setModalContent={setModalContent}
+      />
+      <UserPassword
         user={user}
         setShowModal={setShowModal}
         setModalContent={setModalContent}
