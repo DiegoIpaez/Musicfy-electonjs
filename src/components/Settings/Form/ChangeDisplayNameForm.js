@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { Form, Input, Button } from "semantic-ui-react";
-import { auth } from '../../../../utils/firebase';
-import { addUsername } from '../../../../service/user'
+import { auth } from '../../../utils/firebase';
+import { addUsername } from '../../../service/user'
 
 const { Field } = Form;
 

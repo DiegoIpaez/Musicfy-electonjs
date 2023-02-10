@@ -1,7 +1,12 @@
 import { toast } from "react-toastify";
-import { db } from '../utils/firebase'
-import { doc, getDoc } from 'firebase/firestore/lite'
-import { updateProfile, sendEmailVerification } from "firebase/auth";
+import { db, auth } from "../utils/firebase";
+import { doc, getDoc } from "firebase/firestore/lite";
+import {
+  updateProfile,
+  sendEmailVerification,
+  EmailAuthProvider,
+  reauthenticateWithCredential,
+} from "firebase/auth";
 
 export const addUsername = async (user, newName) => {
   await updateProfile(user, { displayName: newName }).catch(() =>
@@ -21,7 +26,14 @@ export const isAdminUser = async (uid) => {
   const docuRef = doc(db, `admins/${uid}`);
   const query = await getDoc(docuRef);
   return query.exists();
-}
+};
+
+export const reauthenticate = async (password) => {
+  const user = auth.currentUser;
+  const credentials = EmailAuthProvider.credential(user.email, password);
+  const isAuthtenticated = reauthenticateWithCredential(user, credentials);;
+  return isAuthtenticated; 
+};
 
 export const handleError = (code, error) => {
   switch (code) {
