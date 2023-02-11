@@ -49,7 +49,7 @@ const AddArtistForm = ({ setShowModal }) => {
       if (file) {
         const filename = uuidv4();
         await uploadImage(filename);
-        payload.banner = filename;
+        payload.idBanner = filename;
       }
       const docRef = collection(db, 'artists');
       await addDoc(docRef, payload)
