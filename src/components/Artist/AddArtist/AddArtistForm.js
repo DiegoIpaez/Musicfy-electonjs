@@ -3,7 +3,8 @@ import { useState, useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import { v4 as uuidv4 } from "uuid";
 import { ref, uploadBytes } from "firebase/storage";
-import { storage } from "../../../utils/firebase";
+import { storage, db } from "../../../utils/firebase";
+import { addDoc, collection } from 'firebase/firestore/lite'
 import noImage from "../../../assets/png/no-image.png";
 import { Form, Input, Button, Image } from "semantic-ui-react";
 import { commonMessages } from "../../../utils/globalConfig";
@@ -27,7 +28,7 @@ const AddArtistForm = ({ setShowModal }) => {
     setBanner(url);
   }, []);
 
-  const { getInputProps, getRootProps, isDragActive } = useDropzone({
+  const { getInputProps, getRootProps } = useDropzone({
     accept: {
       "image/jpeg": [],
       "image/png": [],
@@ -42,13 +43,16 @@ const AddArtistForm = ({ setShowModal }) => {
     return uploadedFile;
   };
 
-  const createArtist = async ({ musicalGenre, name }) => {
+  const createArtist = async (payload) => {
     try {
       setIsLoading(true);
       if (file) {
         const filename = uuidv4();
         await uploadImage(filename);
+        payload.banner = filename;
       }
+      const docRef = collection(db, 'artists');
+      await addDoc(docRef, payload)
       messageSuccess("Se ha guardado con exito el artista!");
     } catch (error) {
       messageError(commonMessages.generalError);
