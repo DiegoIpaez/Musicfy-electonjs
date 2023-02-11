@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import { isAdminUser } from "../../service/user";
 import { adminMenuItems, userMenuItems } from "./menuItems";
 import BasicModal from "../Modal/BasicModal";
+import AddArtist from '../Artist/AddArtist';
 
 const { Item } = Menu;
 
@@ -40,7 +41,7 @@ export default function MenuLeft({ user }) {
       case "artist":
         setModalContent({
           title: "Nuevo artista",
-          content: <h2>Formulario para nuevo artista</h2>,
+          content: <AddArtist setShowModal={setShowModal} />,
         });
         setShowModal(true);
         break;
