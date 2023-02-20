@@ -15,7 +15,7 @@ const TopBar = ({ user }) => {
       toast.warning("Hubo un error, intentelo de nuevo mas tarde.");
     }
   };
-  const goBack = () => navigate("/");
+  const goBack = () => navigate(-1);
   return (
     <div className="top-bar">
       <div className="top-bar__left">
