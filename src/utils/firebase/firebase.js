@@ -9,6 +9,4 @@ const auth = getAuth(firebaseApp);
 const db = getFirestore(firebaseApp);
 const storage = getStorage(firebaseApp);
 
-// const allCollections = collection(db, 'musicfy')
-
 export { auth, db, storage };
