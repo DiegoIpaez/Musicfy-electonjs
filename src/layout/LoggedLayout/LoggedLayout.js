@@ -3,7 +3,8 @@ import { Grid } from "semantic-ui-react";
 import { BrowserRouter as Router } from "react-router-dom";
 import Routes from "../../routes/Routes";
 import MenuLeft from "../../components/MenuLeft";
-import TopBar from "../../components/TopBar/TopBar";
+import TopBar from "../../components/TopBar";
+import Player from "../../components/Player";
 
 const { Row, Column } = Grid;
 
@@ -22,7 +23,7 @@ export default function LoggedLayout({ user }) {
         </Row>
         <Row>
           <Column width={16}>
-            <h2>Player</h2>
+            <Player />
           </Column>
         </Row>
       </Grid>
