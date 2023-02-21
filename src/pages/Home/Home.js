@@ -9,6 +9,7 @@ import BasicSlider from "../../components/Sliders/BasicSlider";
 
 export default function Home() {
   const [artists, setArtists] = useState([]);
+  const [albums, setAlbums] = useState([])
   useEffect(() => {
     const getArtists = async () => {
       try {
@@ -26,6 +27,23 @@ export default function Home() {
     getArtists();
   }, []);
 
+  useEffect(() => {
+    const getAlbums = async () => {
+      try {
+        const docRef = collection(db, "albums");
+        const querySnapshot = await getDocs(docRef);
+        const albumDocs = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setAlbums(albumDocs);
+      } catch (error) {
+        messageWarning(commonMessages.generalError);
+      }
+    };
+    getAlbums();
+  }, []);
+
   return (
     <>
       <BannerHome />
@@ -36,7 +54,14 @@ export default function Home() {
           linkTo="artist"
           title="Ultimos artistas"
         />
-        <h2>Mas...</h2>
+      </div>
+      <div className="home">
+        <BasicSlider
+          data={albums}
+          folderImage="album"
+          linkTo="album"
+          title="Ultimos álbumes"
+        />
       </div>
     </>
   );
