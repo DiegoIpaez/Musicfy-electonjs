@@ -7,6 +7,7 @@ import { isAdminUser } from "../../service/user";
 import { adminMenuItems, userMenuItems } from "./menuItems";
 import BasicModal from "../Modal/BasicModal";
 import AddArtist from '../Artist/AddArtist';
+import AddAlbum from "../Albums/AddAlbum";
 
 const { Item } = Menu;
 
@@ -42,6 +43,13 @@ export default function MenuLeft({ user }) {
         setModalContent({
           title: "Nuevo artista",
           content: <AddArtist setShowModal={setShowModal} />,
+        });
+        setShowModal(true);
+        break;
+      case "album":
+        setModalContent({
+          title: "Nuevo album",
+          content: <AddAlbum setShowModal={setShowModal}/>,
         });
         setShowModal(true);
         break;

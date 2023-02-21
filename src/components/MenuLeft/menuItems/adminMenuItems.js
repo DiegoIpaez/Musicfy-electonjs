@@ -5,6 +5,13 @@ export const newArtistItem = {
   modalKey: 'artist' 
 };
 
+export const newAlbumItem = {
+  name: "newAlbum",
+  iconName: "plus square outline",
+  label: "Nuevo Album",
+  modalKey: 'album' 
+};
+
 export const newSongItem = {
   name: "newSong",
   iconName: "plus square outline",
@@ -12,6 +19,6 @@ export const newSongItem = {
   modalKey: 'song' 
 };
 
-const adminMenuItems = [newArtistItem, newSongItem];
+const adminMenuItems = [newArtistItem, newAlbumItem, newSongItem];
 
 export default adminMenuItems;
