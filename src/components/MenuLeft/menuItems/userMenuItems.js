@@ -12,6 +12,13 @@ export const artistsItem = {
   label: "Artistas",
 };
 
-const userMenuItems = [homeItem, artistsItem];
+export const albumsItem = {
+  name: "albums",
+  pathname: "/albums",
+  iconName: "window maximize outline",
+  label: "Álbumes",
+};
+
+const userMenuItems = [homeItem, artistsItem, albumsItem];
 
 export default userMenuItems;
