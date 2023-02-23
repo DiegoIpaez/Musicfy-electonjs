@@ -8,6 +8,7 @@ import { adminMenuItems, userMenuItems } from "./menuItems";
 import BasicModal from "../Modal/BasicModal";
 import AddArtist from '../Artist/AddArtist';
 import AddAlbum from "../Albums/AddAlbum";
+import AddSong from "../Songs/AddSong";
 
 const { Item } = Menu;
 
@@ -56,7 +57,7 @@ export default function MenuLeft({ user }) {
       case "song":
         setModalContent({
           title: "Nueva cancion",
-          content: <h2>Formulario para nueva cancion</h2>,
+          content: <AddSong setShowModal={setShowModal}/>,
         });
         setShowModal(true);
         break;
