@@ -18,7 +18,7 @@ import BasicSlider from "../../components/Sliders/BasicSlider";
 export default function Artist() {
   const { id } = useParams();
   const [artist, setArtist] = useState({});
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const getImg = async (idBanner) => {
     try {
@@ -50,7 +50,6 @@ export default function Artist() {
   useEffect(() => {
     const getDataById = async () => {
       try {
-        setLoading(true);
         const docuRef = doc(db, `artists/${id}`);
         const query = await getDoc(docuRef);
         const artist = query.data();

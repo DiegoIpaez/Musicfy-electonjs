@@ -4,12 +4,14 @@ import { getDocs, collection } from "firebase/firestore/lite";
 import { db } from "../../utils/firebase";
 import { commonMessages } from "../../utils/globalConfig";
 import { messageWarning } from "../../utils/toast";
+import { Loader } from 'semantic-ui-react'
 import BannerHome from "../../components/BannerHome";
 import BasicSlider from "../../components/Sliders/BasicSlider";
 
 export default function Home() {
   const [artists, setArtists] = useState([]);
-  const [albums, setAlbums] = useState([])
+  const [albums, setAlbums] = useState([]);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     const getArtists = async () => {
       try {
@@ -22,6 +24,8 @@ export default function Home() {
         setArtists(artistDocs);
       } catch (error) {
         messageWarning(commonMessages.generalError);
+      } finally {
+        setLoading(false);
       }
     };
     getArtists();
@@ -43,6 +47,8 @@ export default function Home() {
     };
     getAlbums();
   }, []);
+
+  if (loading) return <Loader active>Cargando...</Loader>;
 
   return (
     <>

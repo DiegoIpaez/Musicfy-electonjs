@@ -9,7 +9,7 @@ import { db, storage } from "../../utils/firebase";
 export default function Album() {
   const { id } = useParams();
   const [album, setAlbum] = useState({});
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const getImg = async (idBanner) => {
     try {
@@ -35,7 +35,6 @@ export default function Album() {
     const getDataById = async () => {
       const extraData = {};
       try {
-        setLoading(true);
         const docuRef = doc(db, `albums/${id}`);
         const query = await getDoc(docuRef);
         const album = query.data();

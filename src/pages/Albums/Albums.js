@@ -6,10 +6,11 @@ import { ref, getDownloadURL } from "firebase/storage";
 import { db, storage } from "../../utils/firebase";
 import { commonMessages } from "../../utils/globalConfig";
 import { messageWarning } from "../../utils/toast";
-import { Grid } from "semantic-ui-react";
+import { Grid, Loader } from "semantic-ui-react";
 
 export default function Albums() {
   const [albums, setAlbums] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const getAlbums = async () => {
@@ -23,10 +24,14 @@ export default function Albums() {
         setAlbums(albumDocs);
       } catch (error) {
         messageWarning(commonMessages.generalError);
+      } finally {
+        setLoading(false);
       }
     };
     getAlbums();
   }, []);
+
+  if (loading) return <Loader active>Cargando...</Loader>;
 
   return (
     <div className="albums">
