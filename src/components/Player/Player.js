@@ -1,16 +1,13 @@
 import "./player.scss";
 import { Grid, Progress, Icon, Input, Image } from "semantic-ui-react";
 import ReactPlayer from "react-player";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { PlayerSongContext } from "../../provider/PlayerSongProvider";
 
 const { Column } = Grid;
-const songData = {
-  image: "https://i.scdn.co/image/ab67616d0000b273de3c04b5fc750b68899b20a9",
-  name: "Jigsaw falling into place",
-  url: "https://firebasestorage.googleapis.com/v0/b/musicfy-electr0n.appspot.com/o/song%2Fyt5s.io%20-%20Radiohead%20-%20Jigsaw%20Falling%20Into%20Place%20(128%20kbps).mp3?alt=media&token=8c8ded3b-f5d1-447b-ab1d-acc301d1451c",
-};
 
 export default function Player() {
+  const [songData] = useContext(PlayerSongContext);
   const [playing, setPlaying] = useState(false);
   const [playedSeconds, setPlayedSeconds] = useState(0);
   const [totalSeconds, setTotalSeconds] = useState(120);

@@ -12,6 +12,7 @@ import { messageWarning } from "../../utils/toast";
 import { Loader } from "semantic-ui-react";
 import BannerHome from "../../components/BannerHome";
 import BasicSlider from "../../components/Sliders/BasicSlider";
+import SongSlider from "../../components/Sliders/SongSlider";
 
 export default function Home() {
   const limitDocs = 6;
@@ -100,13 +101,15 @@ export default function Home() {
           linkTo="artist"
           title="Ultimos artistas"
         />
-      </div>
-      <div className="home">
         <BasicSlider
           data={albums}
           folderImage="album"
           linkTo="album"
           title="Ultimos álbumes"
+        />
+        <SongSlider
+          data={songs}
+          title="Ultimas canciones"
         />
       </div>
     </>
