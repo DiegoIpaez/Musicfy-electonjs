@@ -13,7 +13,7 @@ import { ref, getDownloadURL } from "firebase/storage";
 import { Loader } from "semantic-ui-react";
 import { db, storage } from "../../utils/firebase";
 import BannerArtist from "../../components/Artist/BannerArtist";
-import BasicSlider from "../../components/Sliders/BasicSlider";
+import Albums from '../Albums'
 
 export default function Artist() {
   const { id } = useParams();
@@ -74,18 +74,8 @@ export default function Artist() {
   return (
     <div className="artist">
       <BannerArtist artist={artist} />
-      {artist?.albums?.length > 3 ? (
-        <div className="artist__content">
-          <BasicSlider
-            className='artist__content__slider'
-            data={artist?.albums}
-            folderImage="album"
-            linkTo="album"
-            title="Álbumes"
-            slidesToShow={artist?.albums?.length - 1}
-            centerMode={false}
-          />
-        </div>
+      {artist?.albums?.length > 0 ? (
+        <Albums idArtist={id} />
       ) : (
         <h4 style={{ textAlign: "center" }}>No hay álbumes disponibles...</h4>
       )}
