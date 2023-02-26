@@ -1,10 +1,18 @@
 import "./album.scss";
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { doc, getDoc } from "firebase/firestore/lite";
+import {
+  doc,
+  getDoc,
+  getDocs,
+  collection,
+  query,
+  where,
+} from "firebase/firestore/lite";
 import { ref, getDownloadURL } from "firebase/storage";
 import { Loader } from "semantic-ui-react";
 import { db, storage } from "../../utils/firebase";
+import ListSong from "../../components/Songs/ListSong";
 
 export default function Album() {
   const { id } = useParams();
@@ -31,6 +39,23 @@ export default function Album() {
     }
   };
 
+  const getSongsByIdAlbum = async (idAlbum) => {
+    try {
+      const songsQuery = query(
+        collection(db, "songs"),
+        where("idAlbum", "==", idAlbum)
+      );
+      const querySnapshot = await getDocs(songsQuery);
+      const songsByIdAlbumDocs = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      return songsByIdAlbumDocs;
+    } catch (error) {
+      return [];
+    }
+  };
+
   useEffect(() => {
     const getDataById = async () => {
       const extraData = {};
@@ -41,8 +66,11 @@ export default function Album() {
 
         const imgURL = await getImg(album?.idBanner);
         const artist = await getArtist(album?.idArtist);
+        const songs = await getSongsByIdAlbum(id);
+
         if (imgURL) extraData.imgURL = imgURL;
         if (artist) extraData.artist = artist;
+        if (songs) extraData.songs = songs;
 
         return setAlbum({ ...extraData, ...album });
       } catch (error) {
@@ -62,7 +90,7 @@ export default function Album() {
         <HeaderAlbum album={album} />
       </div>
       <div className="album__songs">
-        <p>Lista de canciones</p>
+        <ListSong album={album} />
       </div>
     </div>
   );

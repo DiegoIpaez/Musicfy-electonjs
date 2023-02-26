@@ -51,6 +51,7 @@ const RenderItem = ({ item, linkTo }) => {
   const [imgURL, setImgURL] = useState(null);
   const [songUrl, setSongUrl] = useState(null);
 
+  // eslint-disable-next-line no-unused-vars
   const [_, playerSong] = useContext(PlayerSongContext);
 
   useEffect(() => {
@@ -70,7 +71,7 @@ const RenderItem = ({ item, linkTo }) => {
   }, [idAlbum]);
 
   useEffect(() => {
-    const getAlbumImg = async () => {
+    const getSongURL = async () => {
       try {
         const storageRef = ref(storage, `song/${idFile}`);
         const url = await getDownloadURL(storageRef);
@@ -79,7 +80,7 @@ const RenderItem = ({ item, linkTo }) => {
         setSongUrl(null);
       }
     };
-    getAlbumImg();
+    getSongURL();
   }, [idFile]);
 
   const onPlay = () => playerSong(imgURL, name, songUrl);
