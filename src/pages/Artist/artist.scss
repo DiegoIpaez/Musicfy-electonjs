@@ -1,0 +1,11 @@
+@import "../../scss/index.scss";
+
+.artist {
+  &__content {
+    margin: 20px 35px !important;
+  }
+  .albums{
+    margin-top: 0;
+    margin-bottom: 5rem;
+  }
+}

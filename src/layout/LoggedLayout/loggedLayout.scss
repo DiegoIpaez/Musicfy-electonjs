@@ -17,10 +17,23 @@
     &:last-of-type {
       //last row
       height: 10vh;
+      background-color: $background-grey-medium;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
     }
 
     > .column {
       padding: 0;
+    }
+  }
+  .content {
+    height: 90vh;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      display: none;
     }
   }
 }

@@ -1,0 +1,49 @@
+@import "../../scss/index.scss";
+
+.top-bar {
+  height: 3.125rem;
+  // background-color: rgb(34, 34, 34);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1.25rem;
+  position: relative;//added by banner-artist
+  z-index: 1;//adde by banner-artist
+
+  &__left {
+    i {
+      font-size: 1.25rem !important;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  &__right {
+    display: flex;
+    align-items: center;
+
+    a {
+      display: flex;
+      align-items: center;
+      margin-right: 1.25rem;
+      color: $font-light;
+      &:hover {
+        color: $primary-color;
+      }
+      img {
+        width: 1.563rem;
+        height: 1.563rem;
+        margin-right: 0.625rem;
+        border-radius: 3.125rem;
+      }
+    }
+    i {
+      margin-bottom: 0.2rem;
+      &:hover {
+        cursor: pointer;
+        color: $danger;
+      }
+    }
+  }
+}

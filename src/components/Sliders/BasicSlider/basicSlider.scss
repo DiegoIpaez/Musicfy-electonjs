@@ -1,0 +1,38 @@
+@import "../../../scss/index.scss";
+
+.basic-slider {
+  margin: 30px 0;
+
+  > h2 {
+    border-bottom: 1px solid $border-grey-light;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+  }
+
+  &__list {
+    // .slick-prev {
+    //   left: -25px;
+    // }
+    // .slick-next {
+    //   right: -25px;
+    // }
+    &-item {
+      padding: 5px 20px;
+      .avatar {
+        height: 120px;
+        width: 100%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        border-radius: 3px;
+      }
+
+      .item-title {
+        color: $font-grey;
+        margin-top: 10px;
+        font-size: 16px;
+        text-align: center;
+      }
+    }
+  }
+}

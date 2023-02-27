@@ -1,0 +1,55 @@
+@import "../../scss/index.scss";
+
+.settings {
+  margin: 37px 100px 0 100px;
+
+  > h2 {
+    font-size: 30px;
+    margin-bottom: 50px;
+  }
+
+  .avatar-name {
+    display: flex;
+    align-items: center;
+
+    .user-avatar {
+      display: table;
+      margin: 0 !important;
+      border: 2px solid #9a9a9a;
+      border-style: dashed;
+      border-radius: 100px;
+      padding: 8px;
+      margin-bottom: 20px;
+      .ui.image {
+        width: 90px;
+        height: 80px;
+        border-radius: 50px;
+      }
+    }
+
+    .user-name {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+
+      h2 {
+        padding: 0 20px !important;
+      }
+      .ui.button.circular{
+        max-height: 35.972px;
+      }
+    }
+  }
+
+  .user-email, 
+  .user-password {
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 40px;
+
+    h3{
+      margin: 0px;
+    }
+  }
+}
