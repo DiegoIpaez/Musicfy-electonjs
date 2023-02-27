@@ -16,6 +16,10 @@ function createWindow() {
     title: 'Musicfy',
     titleBarStyle: "hiddenInset",
   });
+
+  mainWindow.setMenuBarVisibility(false);
+  mainWindow.setAutoHideMenuBar(true);
+
   mainWindow.loadURL(
     isDev
       ? "http://localhost:3000"

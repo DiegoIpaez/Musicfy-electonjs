@@ -19,6 +19,10 @@ Permite instalar las dependencias del proyecto para poder usarlo de manera local
 
 Ejecuta el proyecto en modo desarrollo.
 
-### `yarn build`
+### `yarn electron-pack --win`
 
-Crea una App para la producción en la carpeta ‘build’.
+Crea en la carpeta dist el .exe de la App’.
+
+### `yarn electron-pack --mac`
+
+Crea en la carpeta dist el .dmg de la App’.
