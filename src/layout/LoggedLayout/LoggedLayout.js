@@ -1,6 +1,6 @@
 import "./loggedLayout.scss";
 import { Grid } from "semantic-ui-react";
-import { BrowserRouter as Router } from "react-router-dom";
+import { MemoryRouter as Router } from "react-router-dom";
 import Routes from "../../routes/Routes";
 import MenuLeft from "../../components/MenuLeft";
 import TopBar from "../../components/TopBar";
